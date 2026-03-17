@@ -12,6 +12,26 @@ CX-Switch 是一个**纯本地**的 Codex 多账号切换 CLI 工具，通过管
 - 📊 **额度监控** — 实时仪表盘、阈值告警、自动切换
 - 🔄 **完全兼容** — 与原始 `codex-auth` 工具的 `registry.json` 双向兼容
 
+## 安装
+
+- Linux / macOS / WSL2：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jay6697117/cx-switch/main/scripts/install.sh | bash
+```
+
+- Windows (PowerShell)：
+
+```powershell
+irm https://raw.githubusercontent.com/jay6697117/cx-switch/main/scripts/install.ps1 | iex
+```
+
+- 通过 Cargo 安装（需要 Rust 环境）：
+
+```bash
+cargo install --git https://github.com/jay6697117/cx-switch.git
+```
+
 ## 命令一览
 
 | 命令 | 说明 |
