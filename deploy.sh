@@ -21,31 +21,35 @@ print_error()   { printf "%b\n" "${C_BOLD}${C_RED}❌ $*${C_RESET}"; }
 
 echo ""
 
-# 判断是否传入了版本号
-if [[ -n "${1:-}" ]]; then
-  # 用户指定了版本号
-  NEXT_TAG="$1"
+# 计算默认版本号（基于最新 tag 自动 patch +1）
+LATEST_TAG="$(git tag --sort=-version:refname | head -n 1 || echo "")"
+
+if [[ -z "${LATEST_TAG}" ]]; then
+  DEFAULT_TAG="v0.1.0"
+  print_info "首次发布，默认版本号: ${DEFAULT_TAG}"
+else
+  print_info "当前最新版本: ${LATEST_TAG}"
+  VERSION="${LATEST_TAG#v}"
+  IFS='.' read -r MAJOR MINOR PATCH <<< "${VERSION}"
+  PATCH=$((PATCH + 1))
+  DEFAULT_TAG="v${MAJOR}.${MINOR}.${PATCH}"
+fi
+
+# 交互式输入版本号，回车使用默认值
+printf "${C_CYAN}请输入版本号${C_RESET} [${C_BOLD}${C_GREEN}${DEFAULT_TAG}${C_RESET}]: "
+read -r INPUT_TAG
+
+if [[ -z "${INPUT_TAG}" ]]; then
+  NEXT_TAG="${DEFAULT_TAG}"
+else
+  NEXT_TAG="${INPUT_TAG}"
   # 自动补 v 前缀
   if [[ "${NEXT_TAG}" != v* ]]; then
     NEXT_TAG="v${NEXT_TAG}"
   fi
-  print_info "使用指定版本号: ${NEXT_TAG}"
-else
-  # 自动递增：获取最新 tag，patch +1
-  LATEST_TAG="$(git tag --sort=-version:refname | head -n 1 || echo "")"
-
-  if [[ -z "${LATEST_TAG}" ]]; then
-    NEXT_TAG="v0.1.0"
-    print_info "首次发布，使用初始版本号: ${NEXT_TAG}"
-  else
-    print_info "当前最新版本: ${LATEST_TAG}"
-    VERSION="${LATEST_TAG#v}"
-    IFS='.' read -r MAJOR MINOR PATCH <<< "${VERSION}"
-    PATCH=$((PATCH + 1))
-    NEXT_TAG="v${MAJOR}.${MINOR}.${PATCH}"
-    print_info "自动递增版本号: ${NEXT_TAG}"
-  fi
 fi
+
+print_info "将要发布版本: ${NEXT_TAG}"
 
 # 检查 tag 是否已存在
 if git rev-parse "${NEXT_TAG}" >/dev/null 2>&1; then
