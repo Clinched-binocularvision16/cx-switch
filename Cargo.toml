@@ -1,0 +1,39 @@
+[package]
+name = "cx-switch"
+version = "0.1.0"
+edition = "2021"
+description = "本地 Codex 多账号切换工具"
+license = "MIT"
+
+[[bin]]
+name = "cx-switch"
+path = "src/main.rs"
+
+[dependencies]
+# 命令行参数解析
+clap = { version = "4", features = ["derive"] }
+
+# JSON 序列化/反序列化
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Base64 编解码（JWT payload）
+base64 = "0.22"
+
+# 终端控制（raw mode、颜色、光标）
+crossterm = "0.28"
+
+# 本地时间格式化
+chrono = "0.4"
+
+# 跨平台获取 HOME 目录
+dirs = "6"
+
+# 错误处理
+anyhow = "1"
+
+# 获取终端宽度
+terminal_size = "0.4"
+
+# Unicode 字符宽度计算
+unicode-width = "0.2"
